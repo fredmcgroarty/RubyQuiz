@@ -36,24 +36,23 @@ describe 'the Friday test :)' do
   specify 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
-
     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   end
 
-#   specify 'all_elements_except_first_3' do
-#     n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
-#     expect(n).to eq [4, 5, 6, 7]
-#   end
+  specify 'all_elements_except_first_3' do
+    n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
+    expect(n).to eq [4, 5, 6, 7]
+  end
 
-#   specify 'add_element_to_beginning_of_array' do
-#     n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
-#     expect(n).to eq [1, 2, 3, 4, 5]
-#   end
+  specify 'add_element_to_beginning_of_array' do
+    n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
+    expect(n).to eq [1, 2, 3, 4, 5]
+  end
 
-#   specify 'array_sort_by_last_letter_of_word' do
-#     n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
-#     expect(n).to eq ['puma', 'maker', 'sky']
-#   end
+  specify 'array_sort_by_last_letter_of_word' do
+    n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
+    expect(n).to eq ['puma', 'maker', 'sky']
+  end
 
 #   specify 'get_first_half_of_string' do
 #     a = get_first_half_of_string 'banana'
