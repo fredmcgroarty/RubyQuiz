@@ -1,13 +1,16 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+	array.select { |x| x =~ /^a/}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+	array.select { |x| x =~ /^a/ || x =~ /^e/ || x =~ /^i/ || x =~ /^o/ || x =~ /^u/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+	array.reject { |x| x == nil }
 end
 
 # remove instances of nil AND false from an array
