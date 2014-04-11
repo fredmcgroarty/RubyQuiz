@@ -75,6 +75,11 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+	new_array = []
+		new_array << array.select.each_with_index { |str, i| i.odd? }
+		new_array << array.select.each_with_index { |str, i| i.even? }
+	new_array
+
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -82,10 +87,19 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+	y = []
+	array.map do |x|
+		if x == x.reverse 
+			y << x 
+		end
+	end
+		y.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+	x = array.group_by(&:size).min.last
+	x.map { |s| "#{s}" }.join(' ') 
 end
 
 # return the longest word in an array
