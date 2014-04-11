@@ -104,16 +104,20 @@ end
 
 # return the longest word in an array
 def longest_word_in_array(array)
+	x = array.group_by(&:size).max.last
+	x.map { |s| "#{s}" }.join(' ') 
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+	array.inject(0) {|x, y| x += y}
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+	array * 2
 end
 
 # convert a symbol into a string
