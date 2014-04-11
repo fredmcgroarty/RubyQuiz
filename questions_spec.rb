@@ -130,30 +130,30 @@ describe 'the Friday test :)' do
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-#   specify 'add_together_keys_and_values' do
-#     n = add_together_keys_and_values({1 => 1, 2 => 2})
-#     expect(n).to eq 6
-#   end
+  specify 'add_together_keys_and_values' do
+    n = add_together_keys_and_values({1 => 1, 2 => 2})
+    expect(n).to eq 6
+  end
 
-#   specify 'remove_capital_letters_from_string' do
-#     n = remove_capital_letters_from_string 'Hello JohnDoe'
-#     expect(n).to eq 'ello ohnoe'
-#   end
+  specify 'remove_capital_letters_from_string' do
+    n = remove_capital_letters_from_string 'Hello JohnDoe'
+    expect(n).to eq 'ello ohnoe'
+  end
 
-#   specify 'round_up_number' do
-#     n = round_up_number 3.142
-#     expect(n).to eq 4
-#   end
+  specify 'round_up_number' do
+    n = round_up_number 3.142
+    expect(n).to eq 4
+  end
 
-#   specify 'round_down_number' do
-#     n = round_down_number 4.9
-#     expect(n).to eq 4
-#   end
+  specify 'round_down_number' do
+    n = round_down_number 4.9
+    expect(n).to eq 4
+  end
 
-#   specify 'format_date_nicely' do
-#     n = format_date_nicely Time.new(2013, 10, 31)
-#     expect(n).to eq '31/10/2013'
-#   end
+  specify 'format_date_nicely' do
+    n = format_date_nicely Time.new(2013, 10, 31)
+    expect(n).to eq '31/10/2013'
+  end
 
 #   specify 'get_domain_name_from_email_address' do
 #     n = get_domain_name_from_email_address 'alex@makersacademy.com'

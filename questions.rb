@@ -138,11 +138,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-	array.select do |x|
-		if x <= 5
-			return
-		end
-	end
+	array.shift(5+1)
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -173,26 +169,36 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+	a = hash.keys
+	b = hash.values 
+	c = a + b
+	c.inject(0) {|x, y| x += y}
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+	a = string.split(//)
+	b = a.map{|x| x.sub(/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/,'')}
+	b.join
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+	float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+	float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+	date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
