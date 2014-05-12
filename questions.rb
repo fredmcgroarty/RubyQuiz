@@ -111,7 +111,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-	array.inject(0) {|x, y| x += y}
+	array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -128,7 +128,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-	value = array.inject(0) {|x, y| x += y}
+	value = array.inject(:+)
 	return_value = value / array.length.to_f
 	return_value.round
 end
@@ -138,7 +138,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-	array.shift(5+1)
+	array.shift(6)
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -172,7 +172,7 @@ def add_together_keys_and_values(hash)
 	a = hash.keys
 	b = hash.values 
 	c = a + b
-	c.inject(0) {|x, y| x += y}
+	c.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -248,6 +248,9 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+	file = File.open(file_path, "rb")
+	content = file.read 
+	content.split.size
 end
 
 # --- tougher ones ---
@@ -256,18 +259,32 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+	str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+	a = Time.new(2014, 4, 18)
+	b = Time.new(2014, 4, 21)
+	c = Time.new(2014, 5, 5)
+	d = Time.new(2014, 5, 26)
+	e = Time.new(2014, 8, 25)
+	f = Time.new(2014, 12, 25)
+	g = Time.new(2014, 12, 26)
+	h = [a,b,c,d,e,f,g]
+	h.include?(date)
 end
 
 # given your birthday this year, this method tells you
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  while birthday.friday? != true
+    birthday += 60 * 60 * 24 * 365
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -276,12 +293,28 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+	words, count = IO.read(file_path).scan(/\w+/), Hash.new(0)
+	words.each { |x| count[x.size] += 1 } and return count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).to_a.map{ |e|
+    fb_check = e / 15
+    b_check = e / 5
+    f_check = e / 3
+    if (e - 15 * fb_check) == 0
+      'FizzBuzz'
+    elsif (e - 5 * b_check) == 0
+      'Buzz'
+    elsif (e - 3 * f_check) == 0
+      'Fizz'
+    else
+      e
+    end
+  }
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -291,4 +324,13 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  99.downto(1) do |n|
+    nouns = Hash.new("bottles")
+    nouns[1] = "bottle"
+
+    puts "#{n} #{nouns[n]} of beer on the wall, #{n} #{nouns[n]} of beer"
+    puts "Take one down, pass it around, #{n-1} #{nouns[n-1]} of beer on the wall\n\n" if n > 1
+  end
+  puts "No more bottles of beer on the wall, no more bottles of beer :("
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall!!! :)"
 end
